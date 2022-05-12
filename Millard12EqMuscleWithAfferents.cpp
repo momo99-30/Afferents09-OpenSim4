@@ -147,8 +147,8 @@ void Millard12EqMuscleWithAfferents::computeInitialFiberEquilibrium(SimTK::State
 	setLPFvelocity(s, getFiberVelocity(s));
 	setLPFacceleration(s, 0.0);
 
-	spindle.computeInitialSpindleEquilibrium(s);
-	GTO.initFromMuscle(s);
+	//spindle.computeInitialSpindleEquilibrium(s);
+	//GTO.initFromMuscle(s);
 
 	vel[0] = vel[1] = vel[2] = getFiberVelocity(s);
 	ts[2] = s.getTime();
