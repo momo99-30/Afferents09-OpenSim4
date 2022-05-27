@@ -1,0 +1,8 @@
+L'objectif final du projet est de simuler une boucle sensorimotrice entre la moelle épinière et un groupe musculaire. La moelle épinière est émulée par le logiciel neuron pour lequel nous disposons d'un API Python. Dans cette partie, nous générons les activations musculaires itérations par itérations en fonctions des afférences de groupe musculaire. Le groupe musculaire est quant à lui émulé sous OpenSim (ie code C++) . Sans spindle et golgi nous avons pu le faire depuis l'API python. Malheureusement en ajoutant un spindle et un golgi nous devons ajouter des variables d'état au modèle (addStateVariable et addCacheVariable). Ces dernières ne sont pas accessibles depuis python. L'objectif de ce code est donc de porter le projet afférents09 écrit sous OpenSim3.3 en OpenSim4.3. Ce projet émule un groupe musculaire avec son spindle et son golgi.
+
+La pipeline fonctionne comme ceci : (on simule le complexe muscle/spindle/golgi entre 0 et 10s par exemple)
+- Excitation initiale des muscles effectivement en forward dynamics il me semble
+- Mise en place de la simulation pour i entre 0 et 10s : récupération de l'état i du muscle (récupération des différentes informations nécessaires, longueur du muscle par exemple)
+- Calcul des informations basés sur l'état d'après le modèle de Mileusnic  
+- Envoi à Neuron des nouvelles afférences calculées
+- Intégration à l'état suivant des nouvelles excitations 
